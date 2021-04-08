@@ -1,7 +1,6 @@
 const fs = require('fs');
 const io = require('socket.io-client');
 const express = require('express');
-const { v4 } = require('uuid');
 const argv = require('minimist')(process.argv.slice(2));
 
 const app = express();
