@@ -1,0 +1,52 @@
+{
+	"parser": "babel-eslint",
+	"extends": [
+		"react-app",
+		"prettier",
+		"plugin:prettier/recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings"
+	],
+	"plugins": ["jest"],
+	"env": { "browser": true, "node": true, "es6": true, "jest/globals": true },
+	"settings": { "react": { "version": "detect" } },
+	"rules": {
+		// "curly": ["error", "all"],
+		// "no-console": ["warn", { "allow": ["warn", "error"] }],
+		// "indent": ["error", "tab", { "SwitchCase": 1 }],
+		"comma-dangle": ["warn", {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"imports": "always-multiline",
+			"exports": "always-multiline",
+			"functions": "never"
+		}],
+		"quote-props": ["error", "as-needed"],
+		"space-before-function-paren": [
+			"error",
+			{
+				"anonymous": "never",
+				"named": "never",
+				"asyncArrow": "always"
+			}
+		],
+		"func-style": ["error", "expression"],
+		"prefer-arrow-callback": ["error", { "allowUnboundThis": false }],
+		"prefer-const": "error",
+		"react/sort-comp": ["error", { "order": ["static-methods", "state", "lifecycle", "everything-else", "render"] }],
+		"no-var": "error",
+		"guard-for-in": "error",
+		"no-nested-ternary": "off",
+		"import/order": [
+			"error",
+			{
+				"newlines-between": "never",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				},
+				"groups": [["builtin", "external", "internal"], "unknown", "parent", "index", "sibling"]
+			}
+		]
+	}
+}
