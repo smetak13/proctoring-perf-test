@@ -24,7 +24,7 @@ const simulateLoad = async () => {
 		encoding: 'binary',
 	});
 
-	for (let i = 0; i < CONCURRENT_USERS; i++) {
+	for (let i = 1; i <= CONCURRENT_USERS; i++) {
 		let examId;
 		const externalExamId = 'external-id';
 		const definitionId = 'a211e950-0bd1-4580-bb78-efb534e649e8';
@@ -40,7 +40,8 @@ const simulateLoad = async () => {
 			},
 		});
 
-		let messages = 0;
+		let webcamMessages = 0;
+		let screenMessages = 0;
 
 		socket.on('examCreated', ({ data }) => {
 			examId = data.id;
@@ -55,7 +56,7 @@ const simulateLoad = async () => {
 				}`
 			);
 
-			messages += 1;
+			webcamMessages += 1;
 		});
 
 		socket.on('screenAnalysisResult', ({ objects }) => {
@@ -64,10 +65,14 @@ const simulateLoad = async () => {
 					objects[0]?.map((object) => object.type + ' (' + object.confidence_percentage + ')').join(', ') ?? ''
 				}`
 			);
+
+			screenMessages += 1;
 		});
 
-		const logTotalMessages = () =>
-			console.log(`${examId} | User ${i} received ${messages} messages in ${DURATION / 1000} seconds.`);
+		const logTotalMessages = () => {
+			console.log(`${examId} | User ${i} received ${webcamMessages} webcam messages in ${DURATION / 1000} seconds.`);
+			console.log(`${examId} | User ${i} received ${screenMessages} screen messages in ${DURATION / 1000} seconds.`);
+		};
 
 		const interval = setInterval(() => {
 			socket.emit('videoChunkCaptured', { examId, video: videoChunk, timestamp: Date.now() });
