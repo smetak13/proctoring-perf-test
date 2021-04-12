@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 	res.send('Proctoring performance test server is running!');
 });
 
-const SERVER_URL = 'https://api-proxy.proctoring.borndigital.ai';
+const SERVER_URL = 'https://proctoring-backend.proctoring.borndigital.ai';
 const DURATION = argv.d ? argv.d * 1000 : 60000;
 const CONCURRENT_USERS = argv.c ? argv.c : 1;
 const COOLDOWN_PERIOD = 10000;
