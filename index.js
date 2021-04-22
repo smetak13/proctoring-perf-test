@@ -88,8 +88,6 @@ const simulateLoad = async () => {
 				console.log(`${examId} | User ${i} disconnected.`);
 			}, COOLDOWN_PERIOD);
 		}, DURATION);
-
-		await new Promise((resolve, reject) => setTimeout(resolve, 100));
 	}
 };
 
